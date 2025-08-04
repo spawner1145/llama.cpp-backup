@@ -18963,13 +18963,13 @@ static void llama_model_quantize_internal(const std::string & fname_inp, const s
             quantize &= name.find("final_layer.") == std::string::npos;
         }
         if (model.arch == LLM_ARCH_LUMINA2) {
-        image_model = true;
-        quantize &= name.find("t_embedder.") == std::string::npos;
-        quantize &= name.find("x_embedder.") == std::string::npos;
-        quantize &= name.find("final_layer.") == std::string::npos;
-        quantize &= name.find("cap_embedder.") == std::string::npos;
-        quantize &= name.find("context_refiner.") == std::string::npos;
-        quantize &= name.find("noise_refiner.") == std::string::npos;
+            image_model = true;
+            quantize &= name.find("t_embedder.") == std::string::npos;
+            quantize &= name.find("x_embedder.") == std::string::npos;
+            quantize &= name.find("final_layer.") == std::string::npos;
+            quantize &= name.find("cap_embedder.") == std::string::npos;
+            quantize &= name.find("context_refiner.") == std::string::npos;
+            quantize &= name.find("noise_refiner.") == std::string::npos;
         }
         // ignore 3D/4D tensors for image models as the code was never meant to handle these
         if (image_model) {
