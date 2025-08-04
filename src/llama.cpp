@@ -18983,7 +18983,7 @@ static void llama_model_quantize_internal(const std::string & fname_inp, const s
         if (quantize) {
             new_type = default_type;
 
-            // get more optimal quantization type based on the tensor shape
+            // get more optimal quantization type based on the tensor shape, layer, etc.
             if (image_model) {
                 new_type = img_tensor_get_type(qs, new_type, tensor, ftype);
             } else {
