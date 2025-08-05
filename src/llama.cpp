@@ -18120,7 +18120,8 @@ static ggml_type img_tensor_get_type(quantize_state_internal & qs, ggml_type new
             ++qs.i_attention_wv;
     } else if ( // Rules for fused qkv attention
             (name.find("attn_qkv.weight") != std::string::npos) ||
-            (name.find("attn.qkv.weight") != std::string::npos)
+            (name.find("attn.qkv.weight") != std::string::npos) ||
+            (name.find("attention.qkv.weight") != std::string::npos)
         ) {
             if (ftype == LLAMA_FTYPE_MOSTLY_Q3_K_M || ftype == LLAMA_FTYPE_MOSTLY_Q3_K_L) {
                 new_type = GGML_TYPE_Q4_K;
@@ -18137,7 +18138,8 @@ static ggml_type img_tensor_get_type(quantize_state_internal & qs, ggml_type new
             (name.find(".ffn.2.weight") != std::string::npos) || // is this even the right way around?
             (name.find(".ff.net.2.weight") != std::string::npos) ||
             (name.find(".mlp.layer2.weight") != std::string::npos) ||
-            (name.find(".adaln_modulation_mlp.2.weight") != std::string::npos)
+            (name.find(".adaln_modulation_mlp.2.weight") != std::string::npos) ||
+            (name.find(".feed_forward.w2.weight") != std::string::npos)
         ) {
             // TODO: add back `layer_info` with some model specific logic + logic further down
             if (ftype == LLAMA_FTYPE_MOSTLY_Q3_K_M) {
